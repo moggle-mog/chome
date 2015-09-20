@@ -2,7 +2,7 @@
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    . /etc/bashrc
 fi
 
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
@@ -21,6 +21,24 @@ alias tmw='tmux -2 new-window'
 alias tmsa='tmux -2 attach-session'
 alias tmwk='tmux -2 kill-window'
 alias tmws='tmux -2 select-window'
+alias r=trash
+alias rl='ls ~/.trash'
+alias ur=undelfile
+undelfile()
+{
+    [ -z "$@"  ] && echo "need params" && return 1
+    mv -i ~/.trash/$@ ./
+}
+trash()
+{
+    [ -z "$@"  ] && echo "need params" && return 1
+    mv $@ ~/.trash/
+}
+cleartrash()
+{
+    read -p "clear sure?[n]" confirm
+    [ $confirm == 'y'  ] || [ $confirm == 'Y'  ]  && /bin/rm -rf ~/.trash/*
+}
 
 tmux_init()
 {
@@ -34,8 +52,9 @@ tmux_init()
     #tmux send-keys -t development:1.2 'cd ~/devproject' C-m
     #tmux send-keys -t development:2 'cd ~/devproject' C-m
     #tmux split-window -v -p 10 -t development
-    #tmux split-window -h               
-    #tmux split-window -v "top" -t $session_name       
-    tmsa -d        
+    #tmux split-window -h
+    #tmux split-window -v "top" -t $session_name
+    tmsa -d
 }
 type tmux >/dev/null 2>&1 &&  test -z "$TMUX" && (tmsa >/dev/null 2>&1 || tmux_init)
+find $HOME/.trash -ctime 7 -type f -name "*" -exec /bin/rm {} \; > /dev/null 2>&1

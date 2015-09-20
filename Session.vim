@@ -8,9 +8,9 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 /custom/conf/shell/shell.root/.zshrc.server
-args .zshrc.server
-edit /custom/conf/shell/shell.root/.zshrc.server
+badd +0 /custom/conf/shell/shell.root/.bash_profile.server
+args .bash_profile.server
+edit /custom/conf/shell/shell.root/.bash_profile.server
 set splitbelow splitright
 wincmd t
 set winheight=1 winwidth=1
