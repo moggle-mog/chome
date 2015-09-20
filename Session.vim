@@ -8,9 +8,9 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 /custom/conf/shell/shell.root/.zshrc.server
-args .zshrc.server
-edit /custom/conf/shell/shell.root/.zshrc.server
+badd +0 /custom/conf/shell/shell.root/.bashrc.server
+args .bashrc.server
+edit /custom/conf/shell/shell.root/.bashrc.server
 set splitbelow splitright
 wincmd t
 set winheight=1 winwidth=1
@@ -23,12 +23,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 1 - ((0 * winheight(0) + 15) / 30)
+let s:l = 27 - ((21 * winheight(0) + 15) / 30)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 010|
+27
+normal! 030|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

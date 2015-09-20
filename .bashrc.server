@@ -24,7 +24,7 @@ alias tmws='tmux -2 select-window'
 
 tmux_init()
 {
-    session_name="develop"
+    session_name="operational"
     tms -s $session_name -n "editor" -d
     tmw -n "console" -t $session_name
     tmws  -t $session_name:1

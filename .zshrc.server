@@ -1,4 +1,4 @@
-type vim >/dev/null 2>&1 && export EDITOR=vim 
+type vim >/dev/null 2>&1 && export EDITOR=vim
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -26,6 +26,9 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias ll='ls -lh'
+alias l='ll'
+alias la='ll -a'
 alias cls='clear'
 alias ..='cd ../'
 alias ...='cd ../../'
@@ -35,11 +38,10 @@ alias tmw='tmux -2 new-window'
 alias tmsa='tmux -2 attach-session'
 alias tmwk='tmux -2 kill-window'
 alias tmws='tmux -2 select-window'
-alias vims='vim -S Session.vim'
 
 tmux_init()
 {
-    session_name="develop"
+    session_name="operational"
     tms -s $session_name -n "editor" -d
     tmw -n "console" -t $session_name
     tmws  -t $session_name:1
@@ -49,8 +51,8 @@ tmux_init()
     #tmux send-keys -t development:1.2 'cd ~/devproject' C-m
     #tmux send-keys -t development:2 'cd ~/devproject' C-m
     #tmux split-window -v -p 10 -t development
-    #tmux split-window -h               
-    #tmux split-window -v "top" -t $session_name       
-    tmsa -d        
+    #tmux split-window -h
+    #tmux split-window -v "top" -t $session_name
+    tmsa -d
 }
 type tmux >/dev/null 2>&1 &&  test -z "$TMUX" && (tmsa >/dev/null 2>&1 || tmux_init)
