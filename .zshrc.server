@@ -3,6 +3,7 @@ type vim >/dev/null 2>&1 && export EDITOR=vim
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
+export TERM=screen-256color
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
