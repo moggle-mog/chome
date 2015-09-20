@@ -1,0 +1,41 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+alias ll='ls -lh'
+alias l='ll'
+alias la='ll -a'
+alias cls='clear'
+alias ..='cd ../'
+alias ...='cd ../../'
+alias free='free -h'
+alias tms='tmux -2 new-session'
+alias tmw='tmux -2 new-window'
+alias tmsa='tmux -2 attach-session'
+alias tmwk='tmux -2 kill-window'
+alias tmws='tmux -2 select-window'
+
+tmux_init()
+{
+    session_name="develop"
+    tms -s $session_name -n "editor" -d
+    tmw -n "console" -t $session_name
+    tmws  -t $session_name:1
+    #tmux send-keys -t development 'cd ~/devproject' C-m
+    #tmux send-keys -t development 'vim' C-m
+    #tmux select-layout -t development main-horizontal
+    #tmux send-keys -t development:1.2 'cd ~/devproject' C-m
+    #tmux send-keys -t development:2 'cd ~/devproject' C-m
+    #tmux split-window -v -p 10 -t development
+    #tmux split-window -h               
+    #tmux split-window -v "top" -t $session_name       
+    tmsa -d        
+}
+type tmux >/dev/null 2>&1 &&  test -z "$TMUX" && (tmsa >/dev/null 2>&1 || tmux_init)

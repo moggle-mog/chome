@@ -1,0 +1,56 @@
+type vim >/dev/null 2>&1 && export EDITOR=vim 
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+alias cls='clear'
+alias ..='cd ../'
+alias ...='cd ../../'
+alias free='free -h'
+alias tms='tmux -2 new-session'
+alias tmw='tmux -2 new-window'
+alias tmsa='tmux -2 attach-session'
+alias tmwk='tmux -2 kill-window'
+alias tmws='tmux -2 select-window'
+alias vims='vim -S Session.vim'
+
+tmux_init()
+{
+    session_name="develop"
+    tms -s $session_name -n "editor" -d
+    tmw -n "console" -t $session_name
+    tmws  -t $session_name:1
+    #tmux send-keys -t development 'cd ~/devproject' C-m
+    #tmux send-keys -t development 'vim' C-m
+    #tmux select-layout -t development main-horizontal
+    #tmux send-keys -t development:1.2 'cd ~/devproject' C-m
+    #tmux send-keys -t development:2 'cd ~/devproject' C-m
+    #tmux split-window -v -p 10 -t development
+    #tmux split-window -h               
+    #tmux split-window -v "top" -t $session_name       
+    tmsa -d        
+}
+type tmux >/dev/null 2>&1 &&  test -z "$TMUX" && (tmsa >/dev/null 2>&1 || tmux_init)
