@@ -3,7 +3,6 @@
 # User specific environment and startup programs
 
 type vim >/dev/null 2>&1 && export EDITOR=vim 
-#export TERM=screen-256color
 
 # Get the aliases and functions
 if [ -f ~/.bashrc ]; then
