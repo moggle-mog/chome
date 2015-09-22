@@ -58,3 +58,4 @@ tmux_init()
 }
 type tmux >/dev/null 2>&1 &&  test -z "$TMUX" && (tmsa >/dev/null 2>&1 || tmux_init)
 find $HOME/.trash -ctime 7 -type f -name "*" -exec /bin/rm {} \; > /dev/null 2>&1
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh  ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
