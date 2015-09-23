@@ -59,6 +59,7 @@ plugins=(git)
 #export LIBRARY_PATH=$HOME/.local/lib:$LIBRARY_PATH
 
 type vim >/dev/null 2>&1 && export EDITOR=vim
+export TERM=xterm-256color
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh

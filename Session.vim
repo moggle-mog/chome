@@ -8,9 +8,9 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 /custom/conf/shell/shell.root/.bash_profile.server
-args .bash_profile.server
-edit /custom/conf/shell/shell.root/.bash_profile.server
+badd +0 /custom/conf/shell/shell.root/.tmux.conf.server
+args .tmux.conf.server
+edit /custom/conf/shell/shell.root/.tmux.conf.server
 set splitbelow splitright
 wincmd t
 set winheight=1 winwidth=1
@@ -23,11 +23,11 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 6 - ((5 * winheight(0) + 24) / 48)
+let s:l = 103 - ((47 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-6
+103
 normal! 0
 tabnext 1
 if exists('s:wipebuf')
