@@ -3,7 +3,7 @@ unbind C-b
 set -g prefix C-a
 
 #goto first column
-bind a send-prefix
+bind C-a send-prefix
 
 #reload settings
 bind R source-file ~/.tmux.conf \; display-message "Config reloaded..." 
@@ -56,7 +56,7 @@ setw -g utf8 on
 set -g status-interval 2
 set -g status-justify "left"
 set -g status-left-length 60
-set -g status-right-length 80
+set -g status-right-length 60
 
 set -g mode-mouse off
 set -g allow-rename off
@@ -102,8 +102,7 @@ set -g display-panes-colour colour166 #orange
 setw -g clock-mode-colour colour64 #green
 
 set -g status-left '#[fg=colour235, bg=colour27]#[fg=colour0, bg=colour100][#S]#[fg=colour27, bg=colour235]|'
-#set -g status-right '|#(date +"%a %b %_d %H:%M")'
-set -g status-right '#(~/network.sh eth0)'
+set -g status-right '#(date "+%Y-%m-%d %H:%M %a")'
 #set -g status-right "%d %b %R"
 set -g window-status-current-format '#[fg=colour235, bg=colour27]#[fg=colour255, bg=colour27][#I.#P #W]#[fg=colour27, bg=colour235]'
 set -g window-status-format '[#I.#P #W]'
