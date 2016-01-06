@@ -18,7 +18,6 @@ if has('clipboard')
        set clipboard=unnamed
    endif
 endif
- change file directory to current directory
 set autochdir
 "set autowrite
 set autoread
@@ -47,8 +46,6 @@ augroup END
 set backup
 set backupdir=~/.vim/.backup
 set viewdir=~/.vim/.views
-
-set t_Co=256
 
 "set tabpagemax=15
 set showmode

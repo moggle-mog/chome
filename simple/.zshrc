@@ -1,5 +1,6 @@
 type vim >/dev/null 2>&1 && export EDITOR=vim
 export TERM=xterm-256color
+export PATH="/usr/local/sbin:$PATH"
 
 # You may need to manually set your language environment
 #export LANG=en_US.UTF-8
