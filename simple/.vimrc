@@ -6,7 +6,6 @@ set encoding=utf-8
 set fileencodings=utf-8
 set termencoding=utf-8
 "scriptencoding utf-8
-set background=dark
 syntax enable
 syntax on
 "set mouse=a
@@ -51,9 +50,6 @@ set viewdir=~/.vim/.views
 set showmode
 set cursorline
 "set cursorcolumn
-"highlight clear SignColumn
-highlight clear LineNr
-highlight clear CursorLineNr
 
 if has('cmdline_info')
     set showcmd
@@ -440,7 +436,8 @@ if &t_Co > 255
    hi Comment         ctermfg=59
    hi CursorColumn                ctermbg=236
    hi ColorColumn                 ctermbg=236
-   hi LineNr          ctermfg=250 ctermbg=236
+   hi LineNr          ctermfg=250 ctermbg=black
+   "hi LineNr          ctermfg=250 ctermbg=236
    hi NonText         ctermfg=59
 
    hi SpecialKey      ctermfg=59
