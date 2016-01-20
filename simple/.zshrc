@@ -1,6 +1,5 @@
 type vim >/dev/null 2>&1 && export EDITOR=vim
 export TERM=xterm-256color
-export PATH="/usr/local/sbin:$PATH"
 
 # You may need to manually set your language environment
 #export LANG=en_US.UTF-8
@@ -26,6 +25,7 @@ export PATH="/usr/local/sbin:$PATH"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+export PATH="$PATH:/usr/local/sbin"
 
 alias ll='ls -lh'
 alias l='ll'
@@ -84,5 +84,5 @@ tmux_init()
     #tmux split-window -v "top" -t $session_name       
     tmas -d        
 }
-type tmux >/dev/null 2>&1 &&  test -z "$TMUX" && (tmas >/dev/null 2>&1 || tmux_init)   
+alias dt='type tmux >/dev/null 2>&1 &&  test -z "$TMUX" && (tmas >/dev/null 2>&1 || tmux_init)' 
 find $HOME/.trash -ctime 7 -type f -name "*" -exec /bin/rm {} \; > /dev/null 2>&1
