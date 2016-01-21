@@ -1,6 +1,7 @@
 ####使用须知
 1. 直接拷贝到指定目录即可使用
 2. 覆盖原始文件前请做好备份
+
 ####vim
 1. 准备文件和目录
 ```shell
@@ -10,6 +11,7 @@ mkdir -p ~/.vim/.views
 ```
 2. vim快捷键
 TODO：
+
 ####ZSH
 1. 准备软件
 ```shell
@@ -22,6 +24,7 @@ chsh -s /bin/zsh
 ```
 3. zsh快捷键
 TODO：
+
 ####BASH
 1. 准备文件
 ```shell
@@ -35,10 +38,12 @@ chsh -s /bin/bash
 ```
 3. bash快捷键
 TODO:
+
 ####GEM
 ```shell
 cp -r .gemrc ~/
 ```
+
 ####git
 1. 准备
 ```shell
@@ -47,6 +52,7 @@ cp -r .gitconfig ~/
 ```
 2. 快捷键
 TODO:
+
 ####tmux
 1. 准备
 ```shell
