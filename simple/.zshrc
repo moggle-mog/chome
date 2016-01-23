@@ -25,7 +25,9 @@ export TERM=xterm-256color
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH="$PATH:/usr/local/sbin"
+
+#export PATH="$PATH:/usr/local/sbin"
+export PATH="$PATH:$HOME/.local/bin:$HOME/bin"
 
 alias ll='ls -lh'
 alias l='ll'
