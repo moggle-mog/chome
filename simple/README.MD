@@ -16,7 +16,7 @@ TODO：
 1. 准备软件
 ```shell
 cp -r .zshrc ~/
-yum install zsh
+yum install -y zsh
 ```
 2. 重启shell，加载zsh
 ```shell
@@ -47,7 +47,7 @@ cp -r .gemrc ~/
 ####git
 1. 准备
 ```shell
-yum install git
+yum install -y git
 cp -r .gitconfig ~/
 ```
 2. 快捷键
@@ -56,7 +56,7 @@ TODO:
 ####tmux
 1. 准备
 ```shell
-yum install tmux
+yum install -y tmux
 cp -r .tmux.conf ~/
 ```
 2. 快捷键
