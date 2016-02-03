@@ -16,11 +16,37 @@ alias cls='clear'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias free='free -h'
+alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
+
 alias tmns='tmux -2 new-session'
 alias tmnw='tmux -2 new-window'
 alias tmas='tmux -2 attach-session'
 alias tmkw='tmux -2 kill-window'
 alias tmsw='tmux -2 select-window'
+
+lias rt=trash
+alias lt='ls ~/.trash'
+alias ut=undelfile
+alias ct=cleartrash
+
+undelfile()
+{
+        [ -z "$@"   ] && echo "need file" && return 1
+            mv -i ~/.trash/$@ ./
+
+}
+trash()
+{
+        [ -z "$@"   ] && echo "need file" && return 1
+            mv $@ ~/.trash/
+
+}
+cleartrash()
+{
+        read -p "clear sure?[y/Y/n]" confirm
+            [ $confirm == 'y'   ] || [ $confirm == 'Y'   ]  && /bin/rm -rf ~/.trash/*
+
+}
 
 tmux_init()
 {
@@ -49,4 +75,5 @@ if type cscope >/dev/null 2>&1;then
     alias cscope-make='cscope -bkq -i cscope.files'
 fi
 
+find $HOME/.trash -ctime 7 -type f -name "*" -exec /bin/rm {} \; > /dev/null 2>&1
 [[ -s ~/.autojump/etc/profile.d/autojump.sh  ]] && . ~/.autojump/etc/profile.d/autojump.sh

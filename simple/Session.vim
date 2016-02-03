@@ -8,9 +8,9 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 ~/chome/simple/.zshrc
-args .zshrc
-edit ~/chome/simple/.zshrc
+badd +0 ~/chome/simple/.tmux.conf
+args .tmux.conf
+edit ~/chome/simple/.tmux.conf
 set splitbelow splitright
 wincmd t
 set winheight=1 winwidth=1
@@ -23,12 +23,12 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 80 - ((41 * winheight(0) + 23) / 46)
+let s:l = 90 - ((3 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-80
-normal! 05|
+90
+normal! 0
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf

@@ -34,6 +34,7 @@ alias l='ll'
 alias la='ll -a'
 alias ..='cd ../'
 alias ...='cd ../../'
+alias lsd='ls -l | grep "^d"'
 
 alias cls='clear'
 alias free='free -h'
@@ -56,7 +57,7 @@ alias ct=cleartrash
 
 undelfile()
 {
-    [ -z "$@"  ] && echo "need file" && return 1                                                                                                                                                             
+    [ -z "$@"  ] && echo "need file" && return 1 
     mv -i ~/.trash/$@ ./
 }
 trash()

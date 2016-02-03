@@ -97,6 +97,33 @@ alias tmnw='tmux -2 new-window'
 alias tmas='tmux -2 attach-session'
 alias tmkw='tmux -2 kill-window'
 alias tmsw='tmux -2 select-window'
+alias lsd='ls -l | grep "^d"'
+
+alias -s gz='tar -xzvf'
+alias -s tgz='tar -xzvf'
+alias -s zip='unzip'
+alias -s bz2='tar -xjvf'
+
+alias rt=trash
+alias lt='ls ~/.trash'
+alias ut=undelfile
+alias ct=cleartrash
+
+undelfile()
+{
+    [ -z "$@"  ] && echo "need file" && return 1
+    mv -i ~/.trash/$@ ./
+}
+trash()
+{
+    [ -z "$@"  ] && echo "need file" && return 1
+    mv $@ ~/.trash/
+}
+cleartrash()
+{
+    read -p "clear sure?[y/Y/n]" confirm
+    [ $confirm == 'y'  ] || [ $confirm == 'Y'  ]  && /bin/rm -rf ~/.trash/*
+}
 
 tmux_init()
 {
@@ -114,7 +141,8 @@ tmux_init()
     #tmux split-window -v "top" -t $session_name
     tmas -d
 }
-type tmux >/dev/null 2>&1 &&  test -z "$TMUX" && (tmas >/dev/null 2>&1 || tmux_init)
+alias dt='type tmux >/dev/null 2>&1 &&  test -z "$TMUX" && (tmas >/dev/null 2>&1 || tmux_init)'
+find $HOME/.trash -ctime 7 -type f -name "*" -exec /bin/rm {} \; > /dev/null 2>&1
 if type ctags >/dev/null 2>&1 ;then
     alias ctags-c='ctags -R --c-types=+p --fields=+S *'
     alias ctags-c++='ctags -R –c++-kinds=+px –fields=+iaSl –extra=+q .'
