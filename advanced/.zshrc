@@ -89,6 +89,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias cls='clear'
+alias lsd='ls -l | grep "^d"'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias free='free -h'
