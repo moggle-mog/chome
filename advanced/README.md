@@ -35,7 +35,7 @@ git clone -b master https://github.com/gmarik/vundle.git  ~/.vim/bundle/vundle
 vim \
 	-u "~/.vimrc.bundles" \
 	   "+set nomore" \
-	   "+BundleInstall!" \
+	   "+BundleInstall" \
 	   "+BundleClean" \
 	   "+qall"
 ```
