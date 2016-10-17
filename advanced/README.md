@@ -12,7 +12,7 @@ yum -y install zsh
 yum -y install scope
 yum -y install ctags
 git clone git@github.com:u2bnone/chome.git
-cd advanced
+cd chome/advanced
 ```
 ####**vim**
 1.安装vim7.4以上版本
@@ -32,12 +32,7 @@ cp -f .vimrc.bundles ~/
 4.安装vim插件
 ```shell
 git clone -b master https://github.com/gmarik/vundle.git  ~/.vim/bundle/vundle
-vim \
-	-u "~/.vimrc.bundles" \
-	   "+set nomore" \
-	   "+BundleInstall!" \
-	   "+BundleClean" \
-	   "+qall"
+vim -u "~/.vimrc.bundles" "+set nomore" "+BundleInstall!" "+BundleClean" "+qall"
 ```
 5.配置样式
 ```shell
@@ -60,7 +55,7 @@ rm -rf autojump
 ```
 3.配置.zshrc
 ```shell
-cp -f .zshrc ./
+cp -f .zshrc ~/
 ```
 4.zsh快捷键
 TODO：
