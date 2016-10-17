@@ -23,11 +23,11 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal nofen
-let s:l = 107 - ((40 * winheight(0) + 22) / 45)
+let s:l = 92 - ((24 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-107
+92
 normal! 0
 tabnext 1
 if exists('s:wipebuf')
