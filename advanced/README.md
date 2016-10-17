@@ -32,7 +32,7 @@ cp -f .vimrc.bundles ~/
 4.安装vim插件
 ```shell
 git clone -b master https://github.com/gmarik/vundle.git  ~/.vim/bundle/vundle
-vim -u "~/.vimrc.bundles" "+set nomore" "+BundleInstall!" "+BundleClean" "+qall"
+vim -u '~/.vimrc.bundles' '+set nomore' '+BundleInstall!' '+BundleClean' '+qall'
 ```
 5.配置样式
 ```shell
