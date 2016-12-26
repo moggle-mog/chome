@@ -1,0 +1,228 @@
+set nocompatible
+
+let mapleader = ','
+"let maplocalleader = '_'
+
+set encoding=utf-8
+"set fileencodings=utf-8,gb2312,gbk,gb18030
+set fileencodings=utf-8
+set termencoding=utf-8
+"scriptencoding utf-8
+
+syntax enable
+"" Syntax highlighting
+syntax on
+
+"" Automatically enable mouse usage
+"set mouse=a
+"" Hide the mouse cursor while typing
+"set mousehide
+
+"" Assume a dark background
+set background=dark
+
+"" change file directory to current directory
+set autochdir
+"" Automatically write a file when leaving a modified buffer
+"set autowrite
+"" reload when file changed outside
+set autoread
+"" Abbreviated the messages
+set shortmess+=aoOtT
+"" Allow for cursor beyond last character
+set virtualedit=onemore
+"" Store a ton of history (default is 20)
+set history=1000
+"" Spell checking on
+"set spell
+"" Allow buffer switching without saving
+set hidden
+"" '.' is an end of word designator
+set iskeyword-=.
+"" '#' is an end of word designator
+set iskeyword-=#
+"" '-' is an end of word designator
+set iskeyword-=-
+
+"" set it to the first line when editing a git commit message
+"au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+
+"" Only show 15 tabs
+"set tabpagemax=15
+"" Display the current mode
+set showmode
+"" Highlight current line
+set cursorline
+"set cursorcolumn
+"" SignColumn should match background(sigh is in the left-hand side of the window like breakpoint in IDE)
+highlight clear SignColumn
+"" Current line number row will have same background color in relative mode
+highlight clear LineNr
+"" Remove highlight color from current line number
+"highlight clear CursorLineNr
+
+"" Show partial commands in status line and Selected characters/lines in visual mode
+set showcmd
+
+set laststatus=2
+
+"" (bs) allows backspacing beyond starting point of insert mode, indents and line breaks
+set backspace=indent,eol,start
+"" No extra spaces between rows
+set linespace=0
+"" Line numbers on
+"set number
+"set relativenumber
+"" Windows can be 0 line high
+set winminheight=0
+"" Puts new vsplit windows to the right of the current
+set splitright
+"" Puts new split windows to the bottom of the current
+set splitbelow
+"" (ws) allows search to wrap to top of document when the bottom has been hit
+set wrapscan
+"" (ic) ignores case in search patterns
+set ignorecase
+"" (scs) don't ignore case when the search pattern has uppercase
+set smartcase
+"" (is) highlights what you are searching for as you type
+set incsearch
+"" (hls) highlights all instances of the last searched string
+set hlsearch
+nmap <silent> <leader>/ :set invhlsearch<CR>
+"" Show list instead of just completing
+set wildmenu
+"" Command <Tab> completion, list matches, then longest common part, then all.
+set wildmode=list:longest,full
+"" wrap long lines
+set wrap
+"" (lbr) wrap long lines at a space instead of in the middle of a word
+set linebreak
+"" Backspace and cursor keys wrap too
+set whichwrap=b,s,h,l,<,>,[,]
+""Lines to scroll when cursor leaves screen
+set scrolljump=5
+""Minimum lines to keep above and below cursor
+set scrolloff=3
+
+"" Auto fold code
+set nofoldenable
+set foldmethod=indent
+"" Code folding options
+nmap <leader>f1 :set foldlevel=0<CR>
+nmap <leader>f2 :set foldlevel=1<CR>
+nmap <leader>f3 :set foldlevel=2<CR>
+nmap <leader>f4 :set foldlevel=3<CR>
+nmap <leader>f5 :set foldlevel=4<CR>
+nmap <leader>f6 :set foldlevel=5<CR>
+nmap <leader>f7 :set foldlevel=6<CR>
+nmap <leader>f8 :set foldlevel=7<CR>
+nmap <leader>f9 :set foldlevel=8<CR>
+nmap <leader>f0 :set foldlevel=9<CR>
+
+"" Highlight problematic whitespace
+"set list
+"set listchars=tab:›\ ,trail:•,extends:#,nbsp:.
+"" In Visual Block Mode, cursor can be positioned where there is no actual character
+set ve=block
+"" Show matching brackets/parenthesis
+set showmatch
+
+"" Prevents inserting two spaces after punctuation on a join (J)
+set nojoinspaces
+"" (ts) width (in spaces) that a <tab> is displayed as
+set tabstop=4
+"" (sw) width (in spaces) used in each step of autoindent (as well as << and >>)
+set shiftwidth=4
+"" (sts)when use backspace,it will delete 4 spaces at the same time
+set softtabstop=4
+"" (et) expand tabs to spaces (use :retab to redo entire file)
+set expandtab
+"" (ai)Indent at the same level of the previous line
+"set autoindent
+"" enable the smartindenting (si) feature for the following files
+set smartindent
+"" close autoindent when pasting
+"set pastetoggle=<F12>
+
+autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
+autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+"" Workaround broken color highlighting in Haskell
+autocmd FileType haskell,rust setlocal nospell
+"" Match, to be used with %
+autocmd FileType xhtml,html,htm,php,xml setlocal matchpairs+=<:>
+"" enable the intelligent cindent (cin) feature for the following files
+autocmd FileType c,h setlocal cindent
+"" preceding line best in a plugin but here for now.
+autocmd FileType haskell,puppet,ruby,yml setlocal expandtab shiftwidth=2 softtabstop=2
+
+""sudo
+cmap w!! w !sudo tee % >/dev/null
+" Adjust viewports to the same size
+map <Leader>= <C-w>=
+"" Find merge conflict markers
+map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+"" Allow using the repeat operator with a visual selection (!)
+vnoremap . :normal .<CR>
+
+"" Wrapped lines goes down/up to next row, rather than next line in file.
+noremap j gj
+noremap k gk
+
+"" Rename the command , convert :W to :w(:W can't write)
+"" bang is !
+"" -nargs=* Any number of arguments are allowed,separated by white space
+"" <args> + ...  The command arguments
+command! -bang -nargs=* -complete=file E e<bang> <args>
+command! -bang -nargs=* -complete=file W w<bang> <args>
+command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+command! -bang Wa wa<bang>
+command! -bang WA wa<bang>
+command! -bang Q q<bang>
+command! -bang QA qa<bang>
+command! -bang Qa qa<bang>
+
+"" %  current file name
+"" :h head (last path component removed)
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+map <leader>ew :edit %%
+map <leader>es :split %%
+map <leader>ev :vsplit %%
+map <leader>et :tabedit %%
+
+"" Easier formatting
+nnoremap <silent> <leader>q gwip
+nnoremap <silent> [b :bp<CR>
+nnoremap <silent> ]b :bn<CR>
+nnoremap <silent> [t :tabp<CR>
+nnoremap <silent> ]t :tabn<CR>
+nnoremap <Leader>y "ay
+nnoremap <Leader>p "ap
+
+" delete others buffer
+function! BufCloseOthers()
+    let l:currentBufNum   = bufnr("%")
+    let l:alternateBufNum = bufnr("#")
+    for i in range(1,bufnr("$"))
+        if buflisted(i)
+            if i!=l:currentBufNum
+                execute("bdelete ".i)
+            endif
+        endif
+    endfor
+endfunction
+map <silent> <leader>bdo :call BufCloseOthers()<CR>
+
+" Restore cursor to file position in previous editing session
+function! ResCur()
+    if line("'\"") <= line("$")
+        normal! g`"
+        return 1
+    endif
+endfunction
+
+augroup resCur
+    autocmd!
+    autocmd BufWinEnter * call ResCur()
+augroup END
