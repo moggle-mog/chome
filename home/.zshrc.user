@@ -1,0 +1,14 @@
+#more setting in $HOME/.dotfiles/.zshrc
+
+# ------------- ZSH 自有配置请手工添加到.zshrc中 -------------
+#ZSH_THEME="alanpeabody"
+#ENABLE_CORRECTION="true"
+#DISABLE_AUTO_UPDATE="true"
+# ---------------------------------------------------------
+
+## ------------------ OVERWRITE ------------------
+
+alias -s gz='tar -xzvf'
+alias -s tgz='tar -xzvf'
+alias -s zip='unzip'
+alias -s bz2='tar -xjvf'

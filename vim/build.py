@@ -14,12 +14,21 @@ class VimPlugin:
     def __init__(self):
         self.setting += [{
             "plugin": ["gmarik/vundle"],
-            "check": "",
+            "check": """
+type git >/dev/null || \
+( (type dnf >/dev/null && sudo dnf -y install git) || \
+(type yum >/dev/null && sudo yum -y install git) || \
+(type apt-get >/dev/null && sudo apt-get install git) || \
+(type brew >/dev/null && brew install git) || \
+(echo "不支持的包管理方式" && exit 1) )
+""",
             "command": """
-rm -rf "$HOME/.vim"
-dir="$HOME/.vim/bundle/vundle"
-mkdir -p $dir
-git clone --depth=1 https://github.com/gmarik/vundle.git $dir || exit 1
+mkdir -p $HOME/.vim/bundle
+if [ ! -d $HOME/.vim/bundle/vundle ]
+then
+    git clone --depth=1 https://github.com/gmarik/vundle.git || exit 1
+    mv -f vundle $HOME/.vim/bundle/
+fi
 """,
             "ending": "",
             "setting": ""
@@ -81,9 +90,11 @@ set viewdir=/tmp/.vim/.views
                 "plugin": ["mileszs/ack.vim"],
                 "check": """
 type ag >/dev/null || \
-(( type dnf >/dev/null && (sudo dnf -y install the_silver_searcher) ) || \
-( type yum >/dev/null && (sudo yum -y install the_silver_searcher) ) || \
-(type apt-get >/dev/null && (sudo apt-get install the_silver_searcher)) || (echo "不支持的包管理方式" && exit 1))
+( (type dnf >/dev/null && sudo dnf -y the_silver_searcher) || \
+(type yum >/dev/null && sudo yum -y the_silver_searcher) || \
+(type apt-get >/dev/null && sudo apt-get the_silver_searcher) || \
+(type brew >/dev/null && brew install the_silver_searcher) || \
+(echo "不支持的包管理方式" && exit 1) )
 """,
                 "command": "",
                 "ending": "",
@@ -171,9 +182,11 @@ let NERDTreeAutoDeleteBuffer=1
                 ],
                 "check": """
 type ag >/dev/null || \
-(( type dnf >/dev/null && (sudo dnf -y install the_silver_searcher) ) || \
-( type yum >/dev/null && (sudo yum -y install the_silver_searcher) ) || \
-(type apt-get >/dev/null && (sudo apt-get install the_silver_searcher)) || (echo "不支持的包管理方式" && exit 1))
+( (type dnf >/dev/null && sudo dnf -y the_silver_searcher) || \
+(type yum >/dev/null && sudo yum -y the_silver_searcher) || \
+(type apt-get >/dev/null && sudo apt-get the_silver_searcher) || \
+(type brew >/dev/null && brew install the_silver_searcher) || \
+(echo "不支持的包管理方式" && exit 1) )
 """,
                 "command": "",
                 "ending": "",
@@ -414,9 +427,11 @@ vmap <leader>aa :Tabularize /
                 "plugin": ["majutsushi/tagbar"],
                 "check": """
 type ctags >/dev/null || \
-(( type dnf >/dev/null && (sudo dnf -y install ctags) ) || \
-( type yum >/dev/null && (sudo yum -y install ctags) ) || \
-(type apt-get >/dev/null && (sudo apt-get install ctags)) || (echo "不支持的包管理方式" && exit 1))
+( (type dnf >/dev/null && sudo dnf -y ctags) || \
+(type yum >/dev/null && sudo yum -y ctags) || \
+(type apt-get >/dev/null && sudo apt-get ctags) || \
+(type brew >/dev/null && brew install ctags) || \
+(echo "不支持的包管理方式" && exit 1) )
 """,
                 "command": "",
                 "ending": "",
@@ -463,9 +478,11 @@ let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
                 "plugin": [],
                 "check": """
 type ctags >/dev/null || \
-(( type dnf >/dev/null && (sudo dnf -y install ctags) ) || \
-( type yum >/dev/null && (sudo yum -y install ctags) ) || \
-(type apt-get >/dev/null && (sudo apt-get install ctags)) || (echo "不支持的包管理方式" && exit 1))
+( (type dnf >/dev/null && sudo dnf -y ctags) || \
+(type yum >/dev/null && sudo yum -y ctags) || \
+(type apt-get >/dev/null && sudo apt-get ctags) || \
+(type brew >/dev/null && brew install ctags) || \
+(echo "不支持的包管理方式" && exit 1) )
 """,
                 "command": """
 mkdir -p $HOME/.vim/tags
@@ -487,7 +504,14 @@ endif
         if use == True:
             self.setting += [{
                 "plugin": [],
-                "check": "type cscope>/dev/null || (echo 'vim cscope 辅助需要 cscope 支持,请先安装 cscope(参见 http://cscope.sourceforge.net)' && exit 1)",
+                "check": """
+type cscope >/dev/null || \
+( (type dnf >/dev/null && sudo dnf -y cscope) || \
+(type yum >/dev/null && sudo yum -y cscope) || \
+(type apt-get >/dev/null && sudo apt-get cscope) || \
+(type brew >/dev/null && brew install cscope) || \
+(echo "不支持的包管理方式" && exit 1) )
+""",
                 "command": """
 mkdir -p /tmp/cscope
 """,
@@ -573,18 +597,23 @@ autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 vim --version | grep +python >/dev/null || (echo "YCM要求 VIM必须要有python支持" && exit 1)
 ( type dnf >/dev/null && (sudo dnf -y install automake gcc gcc-c++ kernel-devel cmake python-devel clang clang-devel) ) || \
 ( type yum >/dev/null && (sudo yum -y install automake gcc gcc-c++ kernel-devel cmake python-devel clang clang-devel) ) || \
-(type apt-get >/dev/null && (sudo apt-get install build-essential cmake python-dev python3-dev clang clang-dev)) || (echo "不支持的包管理方式" && exit 1)
+(type apt-get >/dev/null && (sudo apt-get install build-essential cmake python-dev python3-dev clang clang-dev)) || \
+(echo "不支持的包管理方式" && exit 1)
 """,
                 "command": "",
                 "ending": """
-cd $HOME/.vim/bundle/YouCompleteMe || exit 1
-./install.py --all || (echo "如果YCM编译失败,重新编译YCM即可,无需重新执行 install.sh" && exit 1)
+[ ! -d $HOME/.vim/bundle/YouCompleteMe ] && echo "Bundle安装未完整,请重新执行install.sh" && exit 1
+cd $HOME/.vim/bundle/YouCompleteMe
+git submodule update --init --recursive || (echo "Bundle安装未完整,请重新执行install.sh" && exit 1)
+./install.py --clang-completer || exit 1
+cd -
 """,
                 "setting": """
 "" force YCM to immediately recompile your file and display any new diagnostics it encounters.
 nnoremap <C-F5> :YcmForceCompileAndDiagnostics<CR>
 nnoremap <leader>jc :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
+let g:ycm_global_ycm_extra_conf = '$HOME/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 """,
             }]
 
@@ -667,15 +696,12 @@ filetype plugin indent on
 #! /bin/bash
 ## -------------------- CHECK --------------------
 """ + check.strip() + """
-
 ## -------------------- PROCESS --------------------
 [ -f $HOME/.vimrc ] && mv -f $HOME/.vimrc{,.bak}
 """ + command.strip() + """
-
 ## -------------------- INSTALL --------------------
 [ ! -f .vimrc.bundle ] && (echo ".vimrc.bundle 不存在" &&  exit 1)
-vim -u .vimrc.bundle '+set nomore' '+BundleInstall!' '+BundleClean' '+qall' || exit 1
-[ $? != 0 ] && (echo "请重试" && exit 1)
+vim -u .vimrc.bundle '+set nomore' '+BundleInstall!' '+BundleClean' '+qall' || (echo "请重试" && exit 1)
 ## -------------------- ENDING --------------------
 """ + ending.strip() + """
 
