@@ -226,3 +226,164 @@ augroup resCur
     autocmd!
     autocmd BufWinEnter * call ResCur()
 augroup END
+
+"" ------------------- PLUGIN_START -------------------
+set rtp+=$HOME/.vim/bundle/vundle
+call vundle#begin()
+Plugin 'gmarik/vundle'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'mileszs/ack.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tacahiroy/ctrlp-funky'
+Plugin 'bling/vim-airline'
+Plugin 'mbbill/undotree'
+Plugin 'mhinz/vim-signify'
+Plugin 'gcmt/wildfire.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'godlygeek/tabular'
+Plugin 'majutsushi/tagbar'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'rdnetto/YCM-Generator'
+call vundle#end()
+filetype plugin indent on
+
+"" Enable 256 colors to stop the CSApprox warning and make xterm vim shine
+set t_Co=256
+"" Load a colorscheme
+"let g:molokai_original=1
+"let g:rehash256 = 1
+color molokai
+
+set backup
+set backupdir=/tmp/.vim/.backup
+set viewdir=/tmp/.vim/.views
+
+let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+map <F4> :Ack -i
+
+map <silent> <F2> :NERDTreeMirrorToggle<CR>
+let g:nerdtree_tabs_autofind=1
+
+let NERDTreeShowBookmarks=1
+" Auto change the root directory
+let NERDTreeChDirMode=2
+" show hidden files
+let NERDTreeShowHidden=1
+let NERDTreeWinPos="right"
+let NERDTreeMinimalUI=1
+"let g:NERDTreeWinSize = 23
+""delete the file auto delete the buffer
+let NERDTreeAutoDeleteBuffer=1
+
+"let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+"augroup nerdtree_group
+    "autocmd!
+    "" open a NERDTree automatically when vim starts up if no files were specified
+    "autocmd StdinReadPre * let s:std_in=1
+    "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+    "" close vim if the only window left open is a NERDTree
+    "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+"augroup END
+
+let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
+""scan for dotfiles and dotdirs,does not apply when a command defined with g:ctrlp_user_command is being used
+let g:ctrlp_show_hidden=1
+let g:ctrlp_custom_ignore = {'dir':  '[\/]\.(git|hg|svn)$','file': '\.(exe|so|dll|pyc|swp)$'}
+"" Use a version control listing command when inside a repository, this is faster when scanning large projects listing command lists untracked files (slower)
+let g:ctrlp_user_command = {
+    \ 'types': {
+        \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
+        \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+    \ },
+    \ 'fallback': s:ctrlp_fallback
+\ }
+
+"" CtrlP extensions
+let g:ctrlp_extensions = ['funky']
+
+""funky
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+
+"" narrow the list down with a word under cursor
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
+"" enable/disable bufferline integration
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+"" configure whether buffer numbers should be shown
+let g:airline#extensions#tabline#buffer_nr_show = 1
+"" configure collapsing parent directories in buffer name
+let g:airline#extensions#tabline#fnamecollapse = 0
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#fnamemod = ':t'
+"" the separator used on the left side
+let g:airline_left_sep='|'
+"" the separator used on the right side
+let g:airline_right_sep='|'
+let g:airline_middle_sep='|'
+
+set undodir=/tmp/.vim/.undo
+set undofile
+"" Maximum number of changes that can be undone
+set undolevels=1000
+"" Maximum number lines to save for undo on a buffer reload
+set undoreload=10000
+
+nnoremap <silent> <F5> :UndotreeToggle<CR>
+"" If undotree is opened, it is likely one wants to interact with it.
+let g:undotree_SetFocusWhenToggle=1
+
+nnoremap <silent> <leader>gg :SignifyToggle<CR>
+let g:signify_vcs_list = [ 'git', 'svn' ]
+
+map <SPACE> <Plug>(wildfire-fuel)
+vmap <C-SPACE> <Plug>(wildfire-water)
+let g:wildfire_objects = {  "*" : ["i'", 'i"', "i)", "i]", "i}","ip"], "html,xml" : ["at"],}
+
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+""Enable this option to tell syntastic to always stick any detected errors into the |location-list|
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+""Use this option to specify the height of the location lists that syntastic opens.
+let g:syntastic_loc_list_height = 5
+
+nmap <leader>aa :Tabularize /
+vmap <leader>aa :Tabularize /
+
+"" Width of the Tagbar window in characters.
+nmap <silent> <F3> :TagbarToggle<CR>
+let g:tagbar_width = 30
+"" Set this option to open it on the left instead
+let g:tagbar_left = 1
+"" auto open Tagbar only for specific filetypes
+"autocmd FileType c,cpp,h nested :TagbarOpen
+autocmd BufWinEnter * if &previewwindow | setlocal nonumber | endif
+let g:tagbar_previewwin_pos = "rightbelow"  "The position of the preview window
+let g:tagbar_autopreview = 1
+""hide help infomation
+let g:tagbar_compact=1
+
+"" remap Ultisnips for compatibility for YCM
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+
+"" force YCM to immediately recompile your file and display any new diagnostics it encounters.
+nnoremap <C-F5> :YcmForceCompileAndDiagnostics<CR>
+nnoremap <leader>jc :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
+let g:ycm_global_ycm_extra_conf = '$HOME/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'

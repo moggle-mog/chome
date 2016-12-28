@@ -11,16 +11,26 @@ class VimPlugin:
     """
     setting = []
 
+    def installer(self, target_software):
+        return """
+command -v autojump &>/dev/null || \
+( (command -v dnf &>/dev/null && sudo dnf -y install autojump) || \
+(command -v yum &>/dev/null && sudo yum -y install autojump) || \
+(command -v apt-get &>/dev/null && sudo apt-get install autojump) || \
+(command -v brew &>/dev/null && brew install autojump) || \
+(command "过程被中断,或者使用了不支持的包管理工具" && exit 1) )
+"""
+
     def __init__(self):
         self.setting += [{
             "plugin": ["gmarik/vundle"],
             "check": """
-type git >/dev/null || \
-( (type dnf >/dev/null && sudo dnf -y install git) || \
-(type yum >/dev/null && sudo yum -y install git) || \
-(type apt-get >/dev/null && sudo apt-get install git) || \
-(type brew >/dev/null && brew install git) || \
-(echo "不支持的包管理方式" && exit 1) )
+command -v git &>/dev/null || \
+( (command -v dnf &>/dev/null && sudo dnf -y install git) || \
+(command -v yum &>/dev/null && sudo yum -y install git) || \
+(command -v apt-get &>/dev/null && sudo apt-get install git) || \
+(command -v brew &>/dev/null && brew install git) || \
+(command "过程被中断,或者使用了不支持的包管理工具" && exit 1) )
 """,
             "command": """
 mkdir -p $HOME/.vim/bundle
@@ -89,12 +99,12 @@ set viewdir=/tmp/.vim/.views
             self.setting += [{
                 "plugin": ["mileszs/ack.vim"],
                 "check": """
-type ag >/dev/null || \
-( (type dnf >/dev/null && sudo dnf -y the_silver_searcher) || \
-(type yum >/dev/null && sudo yum -y the_silver_searcher) || \
-(type apt-get >/dev/null && sudo apt-get the_silver_searcher) || \
-(type brew >/dev/null && brew install the_silver_searcher) || \
-(echo "不支持的包管理方式" && exit 1) )
+command -v ag &>/dev/null || \
+( (command -v dnf &>/dev/null && sudo dnf -y install the_silver_searcher) || \
+(command -v yum &>/dev/null && sudo yum -y install the_silver_searcher) || \
+(command -v apt-get &>/dev/null && sudo apt-get install the_silver_searcher) || \
+(command -v brew &>/dev/null && brew install the_silver_searcher) || \
+(command "过程被中断,或者使用了不支持的包管理工具" && exit 1) )
 """,
                 "command": "",
                 "ending": "",
@@ -181,12 +191,12 @@ let NERDTreeAutoDeleteBuffer=1
                     "tacahiroy/ctrlp-funky"
                 ],
                 "check": """
-type ag >/dev/null || \
-( (type dnf >/dev/null && sudo dnf -y the_silver_searcher) || \
-(type yum >/dev/null && sudo yum -y the_silver_searcher) || \
-(type apt-get >/dev/null && sudo apt-get the_silver_searcher) || \
-(type brew >/dev/null && brew install the_silver_searcher) || \
-(echo "不支持的包管理方式" && exit 1) )
+command -v ag &>/dev/null || \
+( (command -v dnf &>/dev/null && sudo dnf -y install the_silver_searcher) || \
+(command -v yum &>/dev/null && sudo yum -y install the_silver_searcher) || \
+(command -v apt-get &>/dev/null && sudo apt-get install the_silver_searcher) || \
+(command -v brew &>/dev/null && brew install the_silver_searcher) || \
+(command "过程被中断,或者使用了不支持的包管理工具" && exit 1) )
 """,
                 "command": "",
                 "ending": "",
@@ -336,7 +346,7 @@ let g:wildfire_objects = {  "*" : ["i'", 'i"', "i)", "i]", "i}","ip"], "html,xml
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 ""Use this option to specify the height of the location lists that syntastic opens.
 let g:syntastic_loc_list_height = 5
 """,
@@ -426,12 +436,12 @@ vmap <leader>aa :Tabularize /
             self.setting += [{
                 "plugin": ["majutsushi/tagbar"],
                 "check": """
-type ctags >/dev/null || \
-( (type dnf >/dev/null && sudo dnf -y ctags) || \
-(type yum >/dev/null && sudo yum -y ctags) || \
-(type apt-get >/dev/null && sudo apt-get ctags) || \
-(type brew >/dev/null && brew install ctags) || \
-(echo "不支持的包管理方式" && exit 1) )
+command -v ctags &>/dev/null || \
+( (command -v dnf &>/dev/null && sudo dnf -y install ctags) || \
+(command -v yum &>/dev/null && sudo yum -y install ctags) || \
+(command -v apt-get &>/dev/null && sudo apt-get install ctags) || \
+(command -v brew &>/dev/null && brew install ctags) || \
+(command "过程被中断,或者使用了不支持的包管理工具" && exit 1) )
 """,
                 "command": "",
                 "ending": "",
@@ -477,12 +487,12 @@ let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
             self.setting += [{
                 "plugin": [],
                 "check": """
-type ctags >/dev/null || \
-( (type dnf >/dev/null && sudo dnf -y ctags) || \
-(type yum >/dev/null && sudo yum -y ctags) || \
-(type apt-get >/dev/null && sudo apt-get ctags) || \
-(type brew >/dev/null && brew install ctags) || \
-(echo "不支持的包管理方式" && exit 1) )
+command -v ctags &>/dev/null || \
+(( command -v dnf &>/dev/null && sudo dnf -y install ctags) || \
+(command -v yum &>/dev/null && sudo yum -y install ctags) || \
+(command -v apt-get &>/dev/null && sudo apt-get install ctags) || \
+(command -v brew &>/dev/null && brew install ctags) || \
+(command "过程被中断,或者使用了不支持的包管理工具" && exit 1) )
 """,
                 "command": """
 mkdir -p $HOME/.vim/tags
@@ -505,12 +515,12 @@ endif
             self.setting += [{
                 "plugin": [],
                 "check": """
-type cscope >/dev/null || \
-( (type dnf >/dev/null && sudo dnf -y cscope) || \
-(type yum >/dev/null && sudo yum -y cscope) || \
-(type apt-get >/dev/null && sudo apt-get cscope) || \
-(type brew >/dev/null && brew install cscope) || \
-(echo "不支持的包管理方式" && exit 1) )
+command -v cscope &>/dev/null || \
+(( command -v dnf &>/dev/null && sudo dnf -y install cscope) || \
+(command -v yum &>/dev/null && sudo yum -y install cscope) || \
+(command -v apt-get &>/dev/null && sudo apt-get install cscope) || \
+(command -v brew &>/dev/null && brew install cscope) || \
+(command "过程被中断,或者使用了不支持的包管理工具" && exit 1) )
 """,
                 "command": """
 mkdir -p /tmp/cscope
@@ -595,18 +605,19 @@ autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
                 "plugin": ["Valloric/YouCompleteMe", "rdnetto/YCM-Generator"],
                 "check": """
 vim --version | grep +python >/dev/null || (echo "YCM要求 VIM必须要有python支持" && exit 1)
-( type dnf >/dev/null && (sudo dnf -y install automake gcc gcc-c++ kernel-devel cmake python-devel clang clang-devel) ) || \
-( type yum >/dev/null && (sudo yum -y install automake gcc gcc-c++ kernel-devel cmake python-devel clang clang-devel) ) || \
-(type apt-get >/dev/null && (sudo apt-get install build-essential cmake python-dev python3-dev clang clang-dev)) || \
-(echo "不支持的包管理方式" && exit 1)
+( command -v yum &>/dev/null && (sudo yum -y install automake gcc gcc-c++ kernel-devel cmake python-devel clang clang-devel) ) || \
+( command -v dnf &>/dev/null && (sudo dnf -y install automake gcc gcc-c++ kernel-devel cmake python-devel clang clang-devel) ) || \
+(command -v apt-get &>/dev/null && (sudo apt-get install build-essential cmake python-dev python3-dev clang clang-dev)) || \
+(echo "过程被中断,或者使用了不支持的包管理工具" && exit 1)
 """,
                 "command": "",
                 "ending": """
 [ ! -d $HOME/.vim/bundle/YouCompleteMe ] && echo "Bundle安装未完整,请重新执行install.sh" && exit 1
 cd $HOME/.vim/bundle/YouCompleteMe
-git submodule update --init --recursive || (echo "Bundle安装未完整,请重新执行install.sh" && exit 1)
+echo "校验并拉取YCM项目"
+git submodule update --init --recursive || exit 1
 ./install.py --clang-completer || exit 1
-cd -
+cd - >/dev/null
 """,
                 "setting": """
 "" force YCM to immediately recompile your file and display any new diagnostics it encounters.

@@ -34,7 +34,7 @@ type vim >/dev/null 2>&1 && export EDITOR=vim
 
 ## -------------------- PLUGIN --------------------
 #autojump
-[[ -s /Users/chaslin/.dotfiles/autojump/etc/profile.d/autojump.bas ]] && source /Users/chaslin/.dotfiles/autojump/etc/profile.d/autojump.sh
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 #autoload -U compinit && compinit -u
 
 ## -------------------- FUNCTION --------------------
