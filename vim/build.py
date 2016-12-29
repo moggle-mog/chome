@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 import os
 
 
@@ -608,6 +609,7 @@ vim --version | grep +python >/dev/null || (echo "YCM要求 VIM必须要有pytho
 ( command -v yum &>/dev/null && (sudo yum -y install automake gcc gcc-c++ kernel-devel cmake python-devel clang clang-devel) ) || \
 ( command -v dnf &>/dev/null && (sudo dnf -y install automake gcc gcc-c++ kernel-devel cmake python-devel clang clang-devel) ) || \
 (command -v apt-get &>/dev/null && (sudo apt-get install build-essential cmake python-dev python3-dev clang clang-dev)) || \
+(command -v brew &>/dev/null && (brew install cmake)) || \
 (echo "过程被中断,或者使用了不支持的包管理工具" && exit 1)
 """,
                 "command": "",

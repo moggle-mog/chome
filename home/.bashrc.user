@@ -15,7 +15,7 @@ alias tmnw='tmux -2 new-window'
 alias tmas='tmux -2 attach-session'
 alias tmkw='tmux -2 kill-window'
 alias tmsw='tmux -2 select-window'
-alias dt='type tmux >/dev/null 2>&1 &&  test -z "$TMUX" && (tmas >/dev/null 2>&1 || tmux_init)'
+alias dt='command -v tmux &>/dev/null &&  test -z "$TMUX" && (tmas >/dev/null 2>&1 || tmux_init)'
 
 # ctags
 alias ctags-c='ctags -R --c-types=+p --fields=+S *'
@@ -43,13 +43,13 @@ tmux_init()
     session_name="develop"
     tmns -s $session_name -n "editor" -d
     tmnw -n "console" -t $session_name
-    tmsw  -t $session_name:1
-    #tmux send-keys -t development 'cd ~/devproject' C-m
-    #tmux send-keys -t development 'vim' C-m
-    #tmux select-layout -t development main-horizontal
-    #tmux send-keys -t development:1.2 'cd ~/devproject' C-m
-    #tmux send-keys -t development:2 'cd ~/devproject' C-m
-    #tmux split-window -v -p 10 -t development
+    tmsw -t $session_name:1
+    #tmux send-keys -t $session_name 'cd ~/devproject' C-m
+    #tmux send-keys -t $session_name 'vim' C-m
+    #tmux select-layout -t $session_name main-horizontal
+    #tmux send-keys -t $session_name:1.2 'cd ~/devproject' C-m
+    #tmux send-keys -t $session_name:2 'cd ~/devproject' C-m
+    #tmux split-window -v -p 10 -t $session_name
     #tmux split-window -h
     #tmux split-window -v "top" -t $session_name
     tmas -d

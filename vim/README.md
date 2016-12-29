@@ -1,19 +1,10 @@
 ##流程
 ```shell
-python3 build.py
-screen
-./install.sh
+./build.py && ./install.sh
 ```
-> screen:
-> 一款终端复用工具,用来保证安装过程不会因为网络问题而中断
-> 重点:
-> <C-a-d>       分离screen(是分离而不是退出!!)
-> screen -r     进入screen
-> 毕竟国内网速那么慢,要是你装一半掉线了,那么我也会很头疼的
->
-> YouCompleteMe:
-> 如果编译失败了,那么参考 https://github.com/Valloric/YouCompleteMe 编译安装
-> 当然,我希望你永远不会用到这一步
+**YouCompleteMe:**
+如果编译失败了,那么参考 https://github.com/Valloric/YouCompleteMe 编译安装,当然,我希望你永远不会用到这一步.
+另外不得不说 YCM 真是耗费CPU = =....
 
 ##普通快捷键
 #####正常模式 (Normal-mode)
@@ -191,3 +182,8 @@ bbox        插入一个大的注释框
 :CCGenerateConfig   生成.ycm_extra_conf.py
 :YcmGenerateConfig  生成.ycm_extra_conf.py
 ```
+#####备注
+在CMakeList.txt 里添加
+>set( CMAKE_EXPORT_COMPILE_COMMANDS 1 )
+
+也能达到YCM自动识别编译flag的需求
