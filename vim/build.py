@@ -140,8 +140,8 @@ let NERDTreeMinimalUI=1
 "let g:NERDTreeWinSize = 23
 ""delete the file auto delete the buffer
 let NERDTreeAutoDeleteBuffer=1
+let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$', '\.DS_Store$']
 
-"let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
 "augroup nerdtree_group
     "autocmd!
     "" open a NERDTree automatically when vim starts up if no files were specified
@@ -627,6 +627,8 @@ nnoremap <C-F5> :YcmForceCompileAndDiagnostics<CR>
 nnoremap <leader>jc :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
 let g:ycm_global_ycm_extra_conf = '$HOME/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
+let g:syntastic_always_populate_loc_list = 1
 """,
             }]
 
