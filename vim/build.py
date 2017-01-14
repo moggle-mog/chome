@@ -76,24 +76,6 @@ color molokai
                 "setting": "",
             }]
 
-    # 备份
-    def _go_back(self, use=True):
-        if use == True:
-            self.setting += [{
-                "plugin": [],
-                "check": "",
-                "command": """
-mkdir -p /tmp/.vim/.backup
-mkdir -p /tmp/.vim/.views
-""",
-                "ending": "",
-                "setting": """
-set backup
-set backupdir=/tmp/.vim/.backup
-set viewdir=/tmp/.vim/.views
-"""
-            }]
-
     # 搜索文本内容
     def _ack(self, use=True):
         if use == True:
@@ -639,7 +621,6 @@ let g:syntastic_always_populate_loc_list = 1
         # 安装需要的模块
         self._colorschemes()
         self._polygolt()
-        self._go_back()
         self._ack()
         self._nerdtree()
         self._surround()
