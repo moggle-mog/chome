@@ -229,12 +229,12 @@ augroup END
 
 set backup
 if !isdirectory('/tmp/.vim/.backup')
-    mkdir('/tmp/.vim/.backup','p')
+    call mkdir('/tmp/.vim/.backup','p')
 endif
 set backupdir=/tmp/.vim/.backup
 
 if !isdirectory('/tmp/.vim/.views')
-    mkdir('/tmp/.vim/.views','p')
+    call mkdir('/tmp/.vim/.views','p')
 endif
 set viewdir=/tmp/.vim/.views
 
