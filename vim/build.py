@@ -12,25 +12,15 @@ class VimPlugin:
     """
     setting = []
 
-    def installer(self, target_software):
-        return """
-command -v autojump &>/dev/null || \
-( (command -v dnf &>/dev/null && sudo dnf -y install autojump) || \
-(command -v yum &>/dev/null && sudo yum -y install autojump) || \
-(command -v apt-get &>/dev/null && sudo apt-get install autojump) || \
-(command -v brew &>/dev/null && brew install autojump) || \
-(command "过程被中断,或者使用了不支持的包管理工具" && exit 1) )
-"""
-
     def __init__(self):
         self.setting += [{
             "plugin": ["gmarik/vundle"],
             "check": """
 command -v git &>/dev/null || \
-( (command -v dnf &>/dev/null && sudo dnf -y install git) || \
-(command -v yum &>/dev/null && sudo yum -y install git) || \
-(command -v apt-get &>/dev/null && sudo apt-get install git) || \
-(command -v brew &>/dev/null && brew install git) || \
+( (command -v dnf &>/dev/null && sudo dnf -y update && sudo dnf -y install git) || \
+(command -v yum &>/dev/null && sudo yum -y update  && sudo yum -y install git) || \
+(command -v apt-get &>/dev/null && sudo apt-get -y update && sudo apt-get install git) || \
+(command -v brew &>/dev/null && brew update && brew install git) || \
 (command "过程被中断,或者使用了不支持的包管理工具" && exit 1) )
 """,
             "command": """
@@ -588,8 +578,8 @@ autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
                 "plugin": ["Valloric/YouCompleteMe", "rdnetto/YCM-Generator"],
                 "check": """
 vim --version | grep +python >/dev/null || (echo "YCM要求 VIM必须要有python支持" && exit 1)
-( command -v yum &>/dev/null && (sudo yum -y install automake gcc gcc-c++ kernel-devel cmake python-devel clang clang-devel) ) || \
-( command -v dnf &>/dev/null && (sudo dnf -y install automake gcc gcc-c++ kernel-devel cmake python-devel clang clang-devel) ) || \
+( command -v yum &>/dev/null && (sudo yum -y install automake gcc gcc-c++ kernel-devel cmake python34-devel clang clang-devel) ) || \
+( command -v dnf &>/dev/null && (sudo dnf -y install automake gcc gcc-c++ kernel-devel cmake python34-devel clang clang-devel) ) || \
 (command -v apt-get &>/dev/null && (sudo apt-get install build-essential cmake python-dev python3-dev clang clang-dev)) || \
 (command -v brew &>/dev/null && (brew install cmake)) || \
 (echo "过程被中断,或者使用了不支持的包管理工具" && exit 1)

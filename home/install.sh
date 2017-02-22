@@ -2,7 +2,7 @@
 mkdir -p $HOME/.dotfiles
 
 git clone --depth=1 git://github.com/joelthelion/autojump.git && \
-cd autojump && && \
+cd autojump && \
 ./uninstall.py && \
 ./install.py && \
 cd ../ && \
@@ -19,8 +19,10 @@ command -v zsh &>/dev/null || \
 (command -v brew &>/dev/null && brew install zsh) || \
 (command "过程被中断,或者使用了不支持的包管理工具" && exit 1) )
 
+/bin/bash;
 export ZSH="$HOME/.dotfiles/oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+exit 0;
 
 cp -f .zshrc.user $HOME/
 echo "[ -f $HOME/.bashrc.user ] && source $HOME/.bashrc.user" >> $HOME/.zshrc
