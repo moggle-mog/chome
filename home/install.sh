@@ -1,6 +1,7 @@
 #! /bin/bash
 mkdir -p $HOME/.dotfiles
 
+command -v j &>/dev/null || \
 git clone --depth=1 git://github.com/joelthelion/autojump.git && \
 cd autojump && \
 ./uninstall.py && \
@@ -8,9 +9,8 @@ cd autojump && \
 cd ../ && \
 rm -rf autojump
 
-cp -f .bashrc.user $HOME/
-
-echo "[ -f $HOME/.bashrc.user ] && source $HOME/.bashrc.user" >> $HOME/.bashrc
+export ZSH="$HOME/.dotfiles/oh-my-zsh"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 command -v zsh &>/dev/null || \
 ( (command -v dnf &>/dev/null && sudo dnf -y install zsh) || \
@@ -19,20 +19,20 @@ command -v zsh &>/dev/null || \
 (command -v brew &>/dev/null && brew install zsh) || \
 (command "过程被中断,或者使用了不支持的包管理工具" && exit 1) )
 
-/bin/bash;
-export ZSH="$HOME/.dotfiles/oh-my-zsh"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-exit 0;
-
-cp -f .zshrc.user $HOME/
-echo "[ -f $HOME/.bashrc.user ] && source $HOME/.bashrc.user" >> $HOME/.zshrc
-echo "[ -f $HOME/.zshrc.user ] && source $HOME/.zshrc.user" >> $HOME/.zshrc
-
-cp -f .gitconfig $HOME/
-cp -f .tmux.conf $HOME/
 command -v tmux &>/dev/null || \
 ( (command -v dnf &>/dev/null && sudo dnf -y install tmux) || \
 (command -v yum &>/dev/null && sudo yum -y install tmux) || \
 (command -v apt-get &>/dev/null && sudo apt-get install tmux) || \
 (command -v brew &>/dev/null && brew install tmux) || \
 (command "过程被中断,或者使用了不支持的包管理工具" && exit 1) )
+
+cp -f .gitconfig $HOME/
+cp -f .tmux.conf $HOME/
+cp -f .zshrc.user $HOME/
+cp -f .bashrc.user $HOME/
+echo "[ -f $HOME/.bashrc.user ] && source $HOME/.bashrc.user" >> $HOME/.bashrc
+echo "[ -f $HOME/.bashrc.user ] && source $HOME/.bashrc.user" >> $HOME/.zshrc
+echo "[ -f $HOME/.zshrc.user ] && source $HOME/.zshrc.user" >> $HOME/.zshrc
+
+
+echo "安装结束"
