@@ -185,5 +185,4 @@ bbox        插入一个大的注释框
 #####备注
 在CMakeList.txt 里添加
 >set( CMAKE_EXPORT_COMPILE_COMMANDS 1 )
-
-也能达到YCM自动识别编译flag的需求
+将会在执行后产生相关的conf文件,YCM默认会去读取它
