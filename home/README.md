@@ -28,27 +28,26 @@ cscope-make 根据cscope原始文件生成cscope数据库
 ```
 #####tmux
 ```
-ctrl-a + ?          查看当前配置的快捷键
-ctrl-a + R          重载 .tmux.conf
-ctrl-a + a          回到行首(代替shell的ctrl-a)
-ctrl-a + [          进入复制模式,按 SPACE 键开始复制,按 RETURN 退出复制模式
-ctrl-a + ]          黏贴
+ctrl-b + ?          查看当前配置的快捷键
+ctrl-b + R          重载 .tmux.conf
+ctrl-b + a          回到行首(代替shell的ctrl-a)
+ctrl-b + [          进入复制模式,按 SPACE 键开始复制,按 RETURN 退出复制模式
+ctrl-b + ]          黏贴
 
-ctrl-a + x          关掉当前 pane
-ctrl-a + z          最大化当前 pane
-ctrl-a + 数字n       选择第 n 个windows                      
-ctrl-a + ,          重命名当前 window
-ctrl-c + c          创建一个新的 window
-ctrl-c + &          关闭当前 window
-ctrl-c + $          重命名当前 session
-ctrl-c + (          选择上一个 session
-ctrl-c + )          选择下一个 session
-ctrl-c + D          选择一个 session
+ctrl-b + x          关掉当前 pane
+ctrl-b + z          最大化当前 pane
+ctrl-b + 数字n       选择第 n 个windows                      
+ctrl-b + ,          重命名当前 window
+ctrl-b + c          创建一个新的 window
+ctrl-b + &          关闭当前 window
+ctrl-b + $          重命名当前 session
+ctrl-b + (          选择上一个 session
+ctrl-b + )          选择下一个 session
+ctrl-b + D          选择一个 session
 
+ctrl-b + |          在当前 pane 右边产生一个新的 pane
+ctrl-b + -          在当前 pane 下边产生一个新的 pane
 
-
-ctrl-a + |          在当前 pane 右边产生一个新的 pane
-ctrl-a + -          在当前 pane 下边产生一个新的 pane
 ctrl + ←            切换到当前 pane 左边的pane
 ctrl + →            切换到当前 pane 左边的pane
 ctrl + ↑            切换到当前 pane 上边的pane
