@@ -2,7 +2,7 @@
 mkdir -p $HOME/.dotfiles
 
 git clone --depth=1 git://github.com/joelthelion/autojump.git && \
-cd autojump && && \
+cd autojump && \
 ./uninstall.py && \
 ./install.py && \
 cd ../ && \
