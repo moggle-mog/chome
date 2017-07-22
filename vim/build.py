@@ -618,7 +618,7 @@ vim --version | grep +python >/dev/null || (echo "YCM要求 VIM必须要有pytho
 cd $HOME/.vim/bundle/YouCompleteMe
 echo "校验并拉取YCM项目"
 git submodule update --init --recursive || exit 1
-./install.py --clang-completer || exit 1
+./install.py --clang-completer --system-libclang || exit 1
 cd - >/dev/null
 """,
                 "setting": """
