@@ -349,9 +349,9 @@ let g:wildfire_objects = {  "*" : ["i'", 'i"', "i)", "i]", "i}","ip"], "html,xml
 "let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_cpp_compiler = executable('clang++') ? 'clang++' : 'g++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+let g:syntastic_cpp_compiler_options = '-std=c++11'
 ""Use this option to specify the height of the location lists that syntastic opens.
-let g:syntastic_loc_list_height = 5
+"let g:syntastic_loc_list_height = 5
 """,
             }]
 
