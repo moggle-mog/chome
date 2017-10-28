@@ -83,14 +83,14 @@ color molokai
                 "plugin": [],
                 "check": "",
                 "command": """
-mkdir -p /tmp/.vim/.backup
-mkdir -p /tmp/.vim/.views
+mkdir -p $HOME/.vim/.backup
+mkdir -p $HOME/.vim/.views
 """,
                 "ending": "",
                 "setting": """
 set backup
-set backupdir=/tmp/.vim/.backup
-set viewdir=/tmp/.vim/.views
+set backupdir=$HOME/.vim/.backup
+set viewdir=$HOME/.vim/.views
 """
             }]
 
