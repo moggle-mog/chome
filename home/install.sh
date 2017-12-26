@@ -18,10 +18,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # 修改 zshrc(安装zsh之后会出现)
 sed -i '/^source \$ZSH\/oh-my-zsh.sh/d' .zshrc
 cp -f .zshrc.user $HOME/
-echo "[ -f $HOME/.bashrc.user ] && source $HOME/.bashrc.user" >> $HOME/.zshrc
-echo "source \$ZSH/oh-my-zsh.sh" >> $HOME/.zshrc
-
 echo "[ -f $HOME/.zshrc.user ] && source $HOME/.zshrc.user" >> $HOME/.zshrc
+echo "source \$ZSH/oh-my-zsh.sh" >> $HOME/.zshrc
+echo "[ -f $HOME/.bashrc.user ] && source $HOME/.bashrc.user" >> $HOME/.zshrc
 
 # 同步更多的配置文件
 cp -f .gitconfig $HOME/
