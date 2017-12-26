@@ -1,10 +1,13 @@
 #more setting in $HOME/.dotfiles/.zshrc
 
 ## ------------- ZSH Config -------------
-#ZSH_THEME="alanpeabody"
+ZSH_THEME="ys"
 DISABLE_AUTO_UPDATE="true"
 ENABLE_CORRECTION="false"
 DISABLE_AUTO_TITLE="true"
+plugins=(
+  git z
+)
 
 ## ------------------ OVERWRITE ------------------
 
@@ -12,6 +15,3 @@ alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
-
-## ------------------ Reload Again ------------------
-source $ZSH/oh-my-zsh.sh
