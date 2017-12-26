@@ -27,7 +27,6 @@ alias cscope-find="find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '
 alias cscope-make='cscope -bkq -i cscope.files'
 
 ## -------------------- EXPORT --------------------
-export TERM=linux
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 type vim >/dev/null 2>&1 && export EDITOR=vim
