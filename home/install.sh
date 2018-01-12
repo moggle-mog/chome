@@ -17,6 +17,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 # 修改 zshrc(安装zsh之后会出现)
 sed -i '/^source \$ZSH\/oh-my-zsh.sh/d' .zshrc
+sed -i '/^source \$HOME\/oh-my-zsh.sh/d' .zshrc
 cp -f .zshrc.user $HOME/
 echo "[ -f $HOME/.zshrc.user ] && source $HOME/.zshrc.user" >> $HOME/.zshrc
 echo "source \$ZSH/oh-my-zsh.sh" >> $HOME/.zshrc
