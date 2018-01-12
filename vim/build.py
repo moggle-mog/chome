@@ -12,16 +12,6 @@ class VimPlugin:
     """
     setting = []
 
-    def installer(self, target_software):
-        return """
-command -v autojump &>/dev/null || \
-( (command -v dnf &>/dev/null && sudo dnf -y install autojump) || \
-(command -v yum &>/dev/null && sudo yum -y install autojump) || \
-(command -v apt-get &>/dev/null && sudo apt-get install autojump) || \
-(command -v brew &>/dev/null && brew install autojump) || \
-(command "过程被中断,或者使用了不支持的包管理工具" && exit 1) )
-"""
-
     def __init__(self):
         self.setting += [{
             "plugin": ["gmarik/vundle"],
@@ -103,7 +93,7 @@ set viewdir=$HOME/.vim/.views
 command -v ag &>/dev/null || \
 ( (command -v dnf &>/dev/null && sudo dnf -y install the_silver_searcher) || \
 (command -v yum &>/dev/null && sudo yum -y install the_silver_searcher) || \
-(command -v apt-get &>/dev/null && sudo apt-get install the_silver_searcher) || \
+(command -v apt-get &>/dev/null && sudo apt-get install silversearcher-ag) || \
 (command -v brew &>/dev/null && brew install the_silver_searcher) || \
 (command "过程被中断,或者使用了不支持的包管理工具" && exit 1) )
 """,
@@ -195,7 +185,7 @@ let NERDTreeAutoDeleteBuffer=1
 command -v ag &>/dev/null || \
 ( (command -v dnf &>/dev/null && sudo dnf -y install the_silver_searcher) || \
 (command -v yum &>/dev/null && sudo yum -y install the_silver_searcher) || \
-(command -v apt-get &>/dev/null && sudo apt-get install the_silver_searcher) || \
+(command -v apt-get &>/dev/null && sudo apt-get install silversearcher-ag) || \
 (command -v brew &>/dev/null && brew install the_silver_searcher) || \
 (command "过程被中断,或者使用了不支持的包管理工具" && exit 1) )
 """,
