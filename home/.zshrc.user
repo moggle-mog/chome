@@ -1,7 +1,7 @@
 #more setting in $HOME/.dotfiles/.zshrc
 
 ## ------------- ZSH Config -------------
-ZSH_THEME="ys"
+ZSH_THEME="suvash"
 DISABLE_AUTO_UPDATE="true"
 ENABLE_CORRECTION="false"
 DISABLE_AUTO_TITLE="true"
