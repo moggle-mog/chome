@@ -12,6 +12,15 @@ command -v zsh &>/dev/null || \
 (command -v apt-get &>/dev/null && sudo apt-get install zsh) || \
 (command -v brew &>/dev/null && brew install zsh) || \
 (command "过程被中断,或者使用了不支持的包管理工具" && exit 1) )
+
+# 安装curl
+command -v git &>/dev/null || \
+( (command -v dnf &>/dev/null && sudo dnf -y install git) || \
+(command -v yum &>/dev/null && sudo yum -y install git) || \
+(command -v apt-get &>/dev/null && sudo apt-get install git) || \
+(command -v brew &>/dev/null && brew install git) || \
+(command "过程被中断,或者使用了不支持的包管理工具" && exit 1) )
+
 export ZSH="$HOME/.dotfiles/oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
