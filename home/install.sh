@@ -25,8 +25,7 @@ export ZSH="$HOME/.dotfiles/oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # 修改 zshrc(安装zsh之后会出现)
-sed -i '/^source \$ZSH\/oh-my-zsh.sh/d' .zshrc
-sed -i '/^source \$HOME\/oh-my-zsh.sh/d' .zshrc
+sed -i '/^source \$ZSH\/oh-my-zsh.sh/d' $HOME/.zshrc
 cp -f .zshrc.user $HOME/
 echo "[ -f $HOME/.zshrc.user ] && source $HOME/.zshrc.user" >> $HOME/.zshrc
 echo "source \$ZSH/oh-my-zsh.sh" >> $HOME/.zshrc
