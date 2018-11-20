@@ -1,4 +1,5 @@
 ##流程
+
 ```shell
 ./install
 ```
@@ -6,13 +7,16 @@
 
 ##快捷键
 #####autojump
+
 ```
 j foo       跳转到 foo 目录
 jc bar      跳转到 bar 的子目录
 jo music    用资源管理器打开 music 目录(前提是操作系统要有图形界面)
 jco images  用资源管理器打开 images 子目录(前提是操作系统要有图形界面)
 ```
+
 #####bash
+
 ```
 ctags-c     为当前目录生成 c的ctags
 ctags-c++   为当前目录生成 c++的ctags
@@ -26,7 +30,9 @@ dt          根据预设窗口打开 tmux
 cscope-find 从当前目录找到匹配的文件生成cscope原始文件
 cscope-make 根据cscope原始文件生成cscope数据库
 ```
+
 #####tmux
+
 ```
 ctrl-a + ?          查看当前配置的快捷键
 ctrl-a + R          重载 .tmux.conf
