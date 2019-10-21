@@ -652,7 +652,7 @@ let g:ycm_confirm_extra_conf = 0
         self._ctags()
         self._cscope()
         self._omnicomplete()
-        self._ycm()
+        #self._ycm()
 
         plugin = ""
         setting = ""
