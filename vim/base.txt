@@ -19,8 +19,8 @@ syntax on
 "" Hide the mouse cursor while typing
 "set mousehide
 
-"" Assume a dark background
-set background=dark
+"" Assume a background
+set background=light
 
 "" change file directory to current directory
 set autochdir
