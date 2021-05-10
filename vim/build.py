@@ -649,7 +649,7 @@ let g:ycm_confirm_extra_conf = 0
         self._a()
         self._tabular()
         self._tagbar()
-        self._snip()
+        #self._snip()
         self._ctags()
         self._cscope()
         self._omnicomplete()
