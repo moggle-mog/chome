@@ -250,8 +250,6 @@ Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
 Plugin 'majutsushi/tagbar'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
 call vundle#end()
 filetype plugin indent on
 
@@ -378,8 +376,3 @@ let g:tagbar_previewwin_pos = "rightbelow"  "The position of the preview window
 let g:tagbar_autopreview = 1
 ""hide help infomation
 let g:tagbar_compact=1
-
-"" remap Ultisnips for compatibility for YCM
-let g:UltiSnipsExpandTrigger = '<C-j>'
-let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-k>'

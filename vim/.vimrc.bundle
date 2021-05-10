@@ -21,7 +21,5 @@ Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'godlygeek/tabular'
 Plugin 'majutsushi/tagbar'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
 call vundle#end()
 filetype plugin indent on
