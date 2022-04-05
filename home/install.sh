@@ -48,6 +48,8 @@ cp -f .gitconfig $HOME/
 cp -f .tmux.conf $HOME/
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+source ~/.zshrc
 omz plugin enable z docker kubectl
 omz theme set suvash
 cp *.zsh $ZSH/custom
