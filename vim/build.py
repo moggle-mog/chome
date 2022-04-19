@@ -278,11 +278,11 @@ set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
                 "plugin": ["mbbill/undotree"],
                 "check": "",
                 "command": """
-mkdir -p /tmp/.vim/.undo
+mkdir -p $HOME/.vim/undo
 """,
                 "ending": "",
                 "setting": """
-set undodir=/tmp/.vim/.undo
+set undodir=$HOME/.vim/undo
 set undofile
 "" Maximum number of changes that can be undone
 set undolevels=1000
