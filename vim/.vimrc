@@ -258,7 +258,7 @@ set t_Co=256
 "" Load a colorscheme
 "let g:molokai_original=1
 "let g:rehash256 = 1
-"color gruvbox
+color gruvbox
 "color solarized
 
 set backup
@@ -330,7 +330,7 @@ let g:airline_left_sep='|'
 let g:airline_right_sep='|'
 let g:airline_middle_sep='|'
 
-set undodir=/tmp/.vim/.undo
+set undodir=$HOME/.vim/undo
 set undofile
 "" Maximum number of changes that can be undone
 set undolevels=1000
