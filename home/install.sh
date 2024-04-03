@@ -13,7 +13,8 @@ _magenta() { echo -e ${magenta}$*${none};  }
 _cyan() { echo -e ${cyan}$*${none};  }]']']']']']'
 
 # Root
-[[ $(id -u) != 0  ]] && echo -e "\n 请使用 ${red}root ${none}用户运行${yellow}.${none}\n" && exit 1
+# [[ $(id -u) != 0  ]] && echo -e "\n 请使用 ${red}root ${none}用户运行${yellow}.${none}\n" && exit 1
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Package
 CMD="yum"
@@ -33,13 +34,13 @@ fi
 # Dependents
 case $CMD in
 'yum')
-   $CMD install -y zsh curl tmux
+   yum install -y zsh curl tmux
    ;;
 'apt-get')
-   $CMD install -y zsh curl tmux
+   apt-get install -y zsh curl tmux
    ;;
 'brew')
-   $CMD install zsh curl tmux
+   brew install zsh curl tmux
    ;;
 esac
 
@@ -49,7 +50,10 @@ cp -f .tmux.conf $HOME/
 
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-source ~/.zshrc
+# Init
 omz plugin enable z docker kubectl
 omz theme set suvash
 cp *.zsh $ZSH/custom
+
+# Load
+source ~/.zshrc

@@ -20,6 +20,7 @@ mkdir -p $HOME/.vim/.backup
 mkdir -p $HOME/.vim/.views
 
 mkdir -p $HOME/.vim/undo
+mkdir -p $HOME/.vim/colors
 ## -------------------- INSTALL --------------------
 [ ! -f .vimrc.bundle ] && (echo ".vimrc.bundle 不存在" &&  exit 1)
 vim -u .vimrc.bundle '+set nomore' '+BundleInstall!' '+BundleClean' '+qall' || (echo "请重试" && exit 1)
