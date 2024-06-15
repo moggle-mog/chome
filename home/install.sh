@@ -47,13 +47,17 @@ case $CMD in
 esac
 
 # 使用推荐的配置
-cp -f .gitconfig $HOME/
-cp -f .tmux.conf $HOME/
+[[ -e .gitconfig ]] || cp -f .gitconfig $HOME/
+[[ -e .tmux.conf ]] || cp -f .tmux.conf $HOME/
 
 # 安装Oh-My-Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc --unattended
+setup_zsh() {
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc --unattended
+  cp *.zsh $ZSH/custom && source ~/.zshrc
+}
 
-function chsh() {
+# 切换shell
+setup_shell() {
   # Test for the right location of the "shells" file
   if [ -f /etc/shells ]; then
     shells_file=/etc/shells
@@ -90,19 +94,18 @@ function chsh() {
     echo "chsh command unsuccessful. Change your default shell manually."
   else
     export SHELL="$zsh"
-    echo "${_green}Shell successfully changed to '$zsh'.${none}"
+    echo "${green}Shell successfully changed to '$zsh'.${none}"
   fi
 
   echo
 }
 
-# 切换SHELL
-chsh
-
 # 初始化ZSH
-omz plugin enable z docker kubectl
-omz theme set suvash
-cp *.zsh $ZSH/custom
+setup_zshrc() {
+  omz plugin enable z docker kubectl
+  omz theme set suvash
+}
 
-# Load
-source ~/.zshrc
+setup_zsh
+setup_shell
+setup_zshrc
