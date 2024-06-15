@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 red='\e[91m'
 green='\e[92m'
@@ -53,7 +53,7 @@ esac
 # 安装Oh-My-Zsh
 setup_zsh() {
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc --unattended
-  cp *.zsh $ZSH/custom && source ~/.zshrc
+  cp *.zsh $ZSH/custom
 }
 
 # 切换shell
@@ -94,7 +94,7 @@ setup_shell() {
     echo "chsh command unsuccessful. Change your default shell manually."
   else
     export SHELL="$zsh"
-    echo "${green}Shell successfully changed to '$zsh'.${none}"
+    echo -e "${green}Shell successfully changed to '$zsh'.${none}"
   fi
 
   echo
@@ -102,10 +102,14 @@ setup_shell() {
 
 # 初始化ZSH
 setup_zshrc() {
-  omz plugin enable z docker kubectl
-  omz theme set suvash
+  zsh -c "source $HOME/.zshrc && 
+  omz plugin enable z docker kubectl && 
+  omz theme set suvash"
 }
 
 setup_zsh
 setup_shell
 setup_zshrc
+
+echo -e "${green}Initial my home successfully.${none}"
+zsh
