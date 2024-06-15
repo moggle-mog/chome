@@ -12,45 +12,94 @@ _yellow() { echo -e ${yellow}$*${none};  }
 _magenta() { echo -e ${magenta}$*${none};  }
 _cyan() { echo -e ${cyan}$*${none};  }
 
-# Root
-# [[ $(id -u) != 0  ]] && echo -e "\n 请使用 ${red}root ${none}用户运行${yellow}.${none}\n" && exit 1
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+USER=${USER:-$(id -u -n)}
 
-# Package
+# 检查是否是root账号（废弃）
+# [[ ${USER} != "root" ]] && echo -e "\n 请使用 ${red}root ${none}用户运行${yellow}.${none}\n" && exit 1
+
+# 安装homebrew
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# 确定系统的依赖包安装工具
 CMD="yum"
 if [[ $(command -v apt-get) || $(command -v yum) ]] && [[ $(command -v systemctl) ]]; then
-	if [[ $(command -v apt-get) ]]; then
-		CMD="apt-get"
-	fi
+  if [[ $(command -v apt-get) ]]; then
+    CMD="apt-get"
+  fi
 elif [[ $(command -v brew) ]]; then
-	CMD="brew"
+  CMD="brew"
 else
-	echo -e " 
-	${red}该脚本${none} 不支持你的系统.${yellow}请确认代码${none}
-	备注: 仅支持 ubuntu 16+ / debian 8+ / centos 7+ / macos 12+ 系统
-	" && exit 1
+  echo -e "${red}该脚本${none} 不支持你的系统.${yellow}请确认代码${none}，仅支持 ubuntu 16+ / debian 8+ / centos 7+ / macos 12+ 系统"
+  exit 1
 fi
 
-# Dependents
+# 安装推荐的工具
 case $CMD in
 'yum')
-   yum install -y zsh curl tmux
+   yum install -y git zsh curl tmux
    ;;
 'apt-get')
-   apt-get install -y zsh curl tmux
+   apt-get install -y git zsh curl tmux
    ;;
 'brew')
-   brew install zsh curl tmux
+   brew install git zsh curl tmux
    ;;
 esac
 
-# Config
+# 使用推荐的配置
 cp -f .gitconfig $HOME/
 cp -f .tmux.conf $HOME/
 
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# 安装Oh-My-Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc --unattended
 
-# Init
+function chsh() {
+  # Test for the right location of the "shells" file
+  if [ -f /etc/shells ]; then
+    shells_file=/etc/shells
+  elif [ -f /usr/share/defaults/etc/shells ]; then # Solus OS
+    shells_file=/usr/share/defaults/etc/shells
+  else
+    echo "could not find /etc/shells file. Change your default shell manually."
+    return
+  fi
+
+  # Get the path to the right zsh binary
+  if ! zsh=$(command -v zsh) || ! grep -qx "$zsh" "$shells_file"; then 
+    if ! zsh=$(grep '^/.*/zsh$' "$shells_file" | tail -n 1) || [ ! -f "$zsh" ]; then
+      echo "no zsh binary found or not present in '$shells_file'"
+      echo "change your default shell manually."
+      return
+    fi
+  fi
+
+  # We're going to change the default shell, so back up the current one
+  if [ -n "$SHELL" ]; then
+    echo "$SHELL" > "$HOME/.shell.pre-oh-my-zsh"
+  else
+    grep "^$USER:" /etc/passwd | awk -F: '{print $7}' > "$HOME/.shell.pre-oh-my-zsh"
+  fi
+
+  echo "Changing your shell to $zsh..."
+
+  # Change shell
+  sudo sh -c "echo ${zsh} >> ${shells_file}"
+
+  # Check if the shell change was successful
+  if [ $? -ne 0 ]; then
+    echo "chsh command unsuccessful. Change your default shell manually."
+  else
+    export SHELL="$zsh"
+    echo "${_green}Shell successfully changed to '$zsh'.${none}"
+  fi
+
+  echo
+}
+
+# 切换SHELL
+chsh
+
+# 初始化ZSH
 omz plugin enable z docker kubectl
 omz theme set suvash
 cp *.zsh $ZSH/custom
