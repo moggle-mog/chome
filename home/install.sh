@@ -10,7 +10,7 @@ _red() { echo -e ${red}$*${none};  }
 _green() { echo -e ${green}$*${none};  }
 _yellow() { echo -e ${yellow}$*${none};  }
 _magenta() { echo -e ${magenta}$*${none};  }
-_cyan() { echo -e ${cyan}$*${none};  }]']']']']']'
+_cyan() { echo -e ${cyan}$*${none};  }
 
 # Root
 # [[ $(id -u) != 0  ]] && echo -e "\n 请使用 ${red}root ${none}用户运行${yellow}.${none}\n" && exit 1
