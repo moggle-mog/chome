@@ -87,7 +87,7 @@ setup_shell() {
   echo "Changing your shell to $zsh..."
 
   # Change shell
-  sudo sh -c "echo ${zsh} >> ${shells_file}"
+  sudo sh -c "grep -wqE ^${zsh}$ ${shells_file} || echo ${zsh} >> ${shells_file}"
 
   # Check if the shell change was successful
   if [ $? -ne 0 ]; then
