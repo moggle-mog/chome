@@ -18,7 +18,7 @@ USER=${USER:-$(id -u -n)}
 # [[ ${USER} != "root" ]] && echo -e "\n 请使用 ${red}root ${none}用户运行${yellow}.${none}\n" && exit 1
 
 # 安装homebrew
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # 确定系统的依赖包安装工具
 CMD="yum"
