@@ -14,11 +14,14 @@ _cyan() { echo -e ${cyan}$*${none};  }
 
 USER=${USER:-$(id -u -n)}
 
-# 检查是否是root账号（废弃）
-# [[ ${USER} != "root" ]] && echo -e "\n 请使用 ${red}root ${none}用户运行${yellow}.${none}\n" && exit 1
-
-# 安装homebrew
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# 如果是Linux系统，请自行将以下这一行命令放在.bashrc，.zshrc中
+if [ ${USER} != "root" ]; then
+  bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo -e `cat <<EOF
+    Next, Manualy add Homebrew to your PATH if this is ${green}linux system${none}.
+    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> $HOME/.zshrc
+  EOF`
+fi
 
 # 确定系统的依赖包安装工具
 CMD="yum"
